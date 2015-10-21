@@ -1,0 +1,19 @@
+h1 {
+    font-size: 22px;
+}
+
+body {
+    background-color: rgb(0, 162, 232);
+}
+
+#main {
+    background-color: rgb(153, 217, 234);
+}
+
+#spielerAnlegen {
+    color: rgb(75, 47, 37);
+}
+
+.buchstaben {
+    color: rgb(136, 0, 21);
+}
