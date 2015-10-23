@@ -10,61 +10,73 @@
     <h1 id="spielerAnlegen">Spieler anlegen</h1>
 
     <form method="get" action="http://martinakraus.net/createPlayer.php">
-        <label for="name">Nachname</label>
-        <input name="name" type="text">
 
-        <br/>
 
-        <label for="vorname">Vorname</label>
-        <input name="vorname" type="text">
 
-        <br/>
+        <div id="leftForm">
+            <label for="name">Nachname</label>
+            <input name="name" type="text">
 
-        <label for="verein">Verein</label>
-        <input name="verein" type="text">
+            <br/>
 
-        <br/>
+            <label for="vorname">Vorname</label>
+            <input name="vorname" type="text">
 
-        <label for="hcoach">Headcoach</label>
-        <input name="hcoach" type="text">
+            <br/>
 
-        <br/>
+            <label for="verein">Verein</label>
+            <input name="verein" type="text">
 
-        <label for="acoach">Assistant Coach</label>
-        <input name="acoach" type="text">
+            <br/>
 
-        <br/>
+            <label for="hcoach">Headcoach</label>
+            <input name="hcoach" type="text">
 
-        <label for="aktiv">Aktiv</label>
-        <input name="aktiv" type="checkbox" value="Ja">Ja
-        <input name="aktiv" type="checkbox" checked="checked" value="Nein">Nein<br/>
+            <br/>
 
-        <br/>
+            <label for="acoach">Assistant Coach</label>
+            <input name="acoach" type="text">
 
-        <label for="position">Position</label>
-        <select name="position">
-            <option value="center">Center</option>
-            <option value="guard">Guard</option>
-            <option value="power forward">Power Forward</option>
-            <option value="wing" selected="selected">Wing</option>
-            <option value="small forward">Small Forward</option>
-        </select>
+            <br/>
 
-        <br/>
+            <label for="aktiv">Aktiv</label>
 
-        <label for="number">Rueckennummer</label>
-        <input name="number" type="number">
+            <div>
+                <input name="aktiv" type="checkbox" value="Ja">Ja
+                <input name="aktiv" type="checkbox" checked="checked" value="Nein">Nein<br/>
+            </div>
 
-        <br/>
+            <br/>
 
-        <label for="jahr">Geburtsjahr</label>
-        <input name="jahr" type="number">
+            <label for="position">Position</label>
+            <select name="position">
+                <option value="center">Center</option>
+                <option value="guard">Guard</option>
+                <option value="power forward">Power Forward</option>
+                <option value="wing" selected="selected">Wing</option>
+                <option value="small forward">Small Forward</option>
+            </select>
 
-        <br/>
+            <br/>
 
-        <input type="checkbox" name="favorit" value="favorit">
+            <label for="number">Rueckennummer</label>
+            <input name="number" type="number">
 
-        <input type="submit">
+            <br/>
+
+            <label for="jahr">Geburtsjahr</label>
+            <input name="jahr" type="number">
+
+
+            <br/>
+        </div>
+
+        <div id="fave">
+            Als favorit markieren <br />
+            <input type="checkbox" name="favorit" value="favorit">
+        </div>
+
+        <input id="submitButton" type="submit">
     </form>
 </div>
 

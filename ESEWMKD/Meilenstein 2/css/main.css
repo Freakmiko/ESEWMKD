@@ -16,8 +16,7 @@ html, body {
 }
 
 form {
-    font-size: 16px;
-    color: black;
+    font-family: Arial Black;
 }
 
 label {
@@ -26,10 +25,27 @@ label {
     float: left;
 }
 
+#fave {
+    float: left;
+    font-size: 12px;
+}
+
+#leftForm {
+    float: left;
+    font-size: 16px;
+    margin-right: 40px;
+}
+
 #spielerAnlegen {
     color: rgb(75, 47, 37);
     text-align: center;
     margin-bottom: 100px;
+}
+
+#submitButton {
+    float: left;
+    clear:both;
+    margin-top: 10px;
 }
 
 span {
