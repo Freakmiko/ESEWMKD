@@ -9,7 +9,6 @@ function onLoad() {
 }
 
 function checkInput() {
-    var regexp = /^[a-zA-Z-äöüÄÖÜéàèÉÈ]+$/;
     var name = document.getElementsByName("name")[0];
     var vorname = document.getElementsByName("vorname")[0];
     var verein = document.getElementsByName("verein")[0];
@@ -29,7 +28,6 @@ function checkInput() {
     rueckennummer.style.border = "";
 
 
-    // TODO: REDUNANZ VERMEIDEN METHODE EXTRAHIEREN
     // TODO: leeres jahr? Bug? keine Ahnung?
     if(jahr.value <= 0 || jahr.value > 2015) {
         jahr.style.border = "thick solid #FF0000";
@@ -44,38 +42,8 @@ function checkInput() {
         valid =  false;
     }
 
-    if(!acoach.value.match(regexp)) {
-        acoach.style.border = "thick solid #FF0000";
-        acoach.focus();
-
-        valid = false;
-    }
-
-    if(!hcoach.value.match(regexp)) {
-        hcoach.style.border = "thick solid #FF0000";
-        hcoach.focus();
-
-        valid = false;
-    }
-
-    if(!verein.value.match(regexp)) {
-        verein.style.border = "thick solid #FF0000";
-        verein.focus();
-
-        valid = false;
-    }
-
-    if(!vorname.value.match(regexp)) {
-        vorname.style.border = "thick solid #FF0000";
-        vorname.focus();
-
-        valid = false;
-    }
-
-    if(!name.value.match(regexp)) {
-        name.style.border = "thick solid #FF0000";
-        name.focus();
-
+    if( !isTextFieldValid(acoach) | !isTextFieldValid(hcoach) |
+        !isTextFieldValid(verein) | !isTextFieldValid(vorname) | !isTextFieldValid(name) ) {
         valid = false;
     }
 
@@ -83,6 +51,18 @@ function checkInput() {
         alert("Einige Eingaben sind fehlerhaft. Bitte überprüfen Sie ihre Eingaben");
     }
     return valid;
+}
+
+function isTextFieldValid(field) {
+    var regexp = /^[a-zA-Z-äöüÄÖÜéàèÉÈ]+$/;
+
+    if(!field.value.match(regexp)) {
+        field.style.border = "thick solid #FF0000";
+        field.focus();
+
+        return false;
+    }
+    return true;
 }
 
 
