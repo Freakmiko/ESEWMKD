@@ -2,12 +2,6 @@
  * Created by m.kurila on 04.11.15.
  */
 
-
-function onLoad() {
-    var button = document.getElementById('submitButton');
-    button.addEventListener('click', checkInput);
-}
-
 function checkInput() {
     var name = document.getElementsByName("name")[0];
     var vorname = document.getElementsByName("vorname")[0];
