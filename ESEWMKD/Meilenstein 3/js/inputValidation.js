@@ -22,8 +22,7 @@ function checkInput() {
     rueckennummer.style.border = "";
 
 
-    // TODO: leeres jahr? Bug? keine Ahnung?
-    if(jahr.value <= 0 || jahr.value > 2015) {
+    if(jahr.value < 0 || jahr.value > 2015 || jahr.value == "") {
         jahr.style.border = "thick solid #FF0000";
         jahr.focus();
 
