@@ -1,53 +1,35 @@
 var request = new XMLHttpRequest();
+var playerDataArray;
 
 function loadPlayers() {
-    request.open("GET", "http://localhost:63342/ESEWMKD/ESEWMKD/Meilenstein%204/js/data.json");
+    request.open("GET", "http://localhost:63342/WAW/ESEWMKD/Meilenstein 4/js/data.json");
     request.onreadystatechange = requestHandler;
     request.send();
+
+    document.getElementsByClassName("tabellenReiterRechts")[0].addEventListener("click", function() {
+    });
 }
 
+function loadTable() {
+    for(var i = 0; i < playerDataArray.length; ++i) {
+        var tableRow = document.getElementById("spielerTabelle").insertRow(i+1);
+        tableRow.insertCell(0).innerHTML = playerDataArray[i].firstname + " " + playerDataArray[i].surname;
+        tableRow.insertCell(1).innerHTML = playerDataArray[i].team;
+        tableRow.insertCell(2).innerHTML = playerDataArray[i].headcoach;
+        tableRow.insertCell(3).innerHTML = playerDataArray[i].asisstantcoach;
+        tableRow.insertCell(4).innerHTML = playerDataArray[i].position;
+        tableRow.insertCell(5).innerHTML = playerDataArray[i].isActive;
+        tableRow.insertCell(6).innerHTML = playerDataArray[i].number;
+        tableRow.insertCell(7).innerHTML = playerDataArray[i].year;
+
+    }
+}
 function requestHandler() {
     if ((request.readyState == 4)
         && (request.status == 200)
         && (request.responseText != null)) {
-        var playerArray = JSON.parse(request.responseText);
-        for (var i = 0; i < playerArray.length; i++) {
-            var tablerow = document.createElement("tr");
+        playerDataArray = JSON.parse(request.responseText);
 
-            var spieler = document.createElement("td");
-            spieler.innerHTML = playerArray[i].firstname + " " + playerArray[i].surname;
-            tablerow.appendChild(spieler);
-
-            var team = document.createElement("td");
-            team.innerHTML = playerArray[i].team;
-            tablerow.appendChild(team);
-
-            var headcoach = document.createElement("td");
-            headcoach.innerHTML = playerArray[i].headcoach;
-            tablerow.appendChild(headcoach);
-
-            var asisstantcoach = document.createElement("td");
-            asisstantcoach.innerHTML = playerArray[i].asisstantcoach;
-            tablerow.appendChild(asisstantcoach);
-
-            var position = document.createElement("td");
-            position.innerHTML = playerArray[i].position;
-            tablerow.appendChild(position);
-
-            var isactive = document.createElement("td");
-            isactive.innerHTML = playerArray[i].isActive;
-            tablerow.appendChild(isactive);
-
-            var number = document.createElement("td");
-            number.innerHTML = playerArray[i].number;
-            tablerow.appendChild(number);
-
-            var year = document.createElement("td");
-            year.innerHTML = playerArray[i].year;
-            tablerow.appendChild(year);
-
-            document.getElementById("spielerTabelle").firstElementChild.appendChild(tablerow);
-        }
-
+        loadTable();
     }
 }
