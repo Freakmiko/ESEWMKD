@@ -89,7 +89,7 @@ span {
 
 table {
     width: 100%;
-    margin: 0px 5px;
+    margin: 0 5px;
     font-size: 12px;
 }
 
@@ -98,7 +98,7 @@ table {
     font-size: 20px;
     float: left;
     width: 50%;
-    margin: 0px -2px;
+    margin: 0 -2px;
     border: solid 2px;
 }
 
@@ -107,7 +107,7 @@ table {
     font-size: 20px;
     float: right;
     width: 50%;
-    margin: 0px -2px;
+    margin: 0 -2px;
     border: solid 2px;
 }
 
@@ -126,10 +126,15 @@ table {
     border-style: solid;
     border-width: 2px;
     border-color: black;
-    padding: 0px;
+    padding: 0;
     margin: -1px;
 }
 
 td {
     width: 12.5%;
+}
+
+#backButton {
+    float: left;
+    margin: 10px;
 }
