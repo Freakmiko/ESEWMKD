@@ -6,35 +6,36 @@
 var http = require("http");
 var url = require("url");
 var fs = require("fs");
+var path =  require("path");
 var express = require("express");
+var parser = require("body/json");
 var app = express();
 
+app.use(express.static(path.join(__dirname, "../")));
+
 app.get("/AllPlayers", function(req, res) {
-    res.end("Fuck you");
+    fs.readFile("data.json", function(err, data) {
+        res.end(data);
+    })
 });
 
-app.get("/Favoriets", function(reg, res ){
-    res.end("Fuck you all");
+app.get("/Favorites", function(reg, res ){
+    fs.readFile("data.json", function(err, data) {
+        var playerArray = JSON.parse(data);
+        for (var i = 0; i < playerArray.length; ++i) {
+            if(playerArray[i].isFavorite == false)
+                playerArray.splice(i--,1);
+        }
+        res.end(JSON.stringify(playerArray));
+    });
+});
+
+app.put("/Player", function(req) {
+    parser(req, function(err, body) {
+        fs.appendFile("form.txt", body.vorname + " " + body.name + ", "
+            + body.jahr + ", " + body.hcoach + ", " + body.acoach + ", " + body.position
+            + ", " + body.number + "\n");
+    });
 });
 
 app.listen(1337);
-
-//http.createServer(function(request, respone){
-//
-//    if (request.url == "/favicon.ico")
-//        return;
-//
-//    console.log("user connected");
-//
-//
-//
-//     extract the arguments from the url so that we can use them and write them to the file
-    //var url_parts = url.parse(request.url, true);
-    //var query = url_parts.query;
-    //fs.appendFile("form.txt", query["vorname"] + " " + query["name"] + ", "
-    //    + query["jahr"] + ", " + query["hcoach"] + ", " + query["acoach"] + ", " + query["position"]
-    //    + ", " + query["number"] + "\n");
-    //
-    //respone.writeHead(200, {"Content-Type":"text/plain"});
-    //respone.end("Sie haben sich erfolgreich auf den WebServer mir der Url 127.0.0.1:1337 verbunden");
-//}).listen(1337, "127.0.0.1");

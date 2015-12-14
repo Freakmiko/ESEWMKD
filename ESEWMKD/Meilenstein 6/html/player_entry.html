@@ -10,33 +10,31 @@
 <div id="main">
     <h1 id="spielerAnlegen">Spieler anlegen</h1>
 
-    <form onsubmit="return checkInput()" method="get" action="http://127.0.0.1:1337/">
-
-
+    <form onsubmit="return onSubmit()">
 
         <div id="leftForm">
             <label for="name">Nachname</label>
-            <input name="name" type="text">
+            <input name="name" type="text" pattern="^[a-zA-Z-äöüÄÖÜéàèÉÈ]+$" required>
 
             <br/>
 
             <label for="vorname">Vorname</label>
-            <input name="vorname" type="text">
+            <input name="vorname" type="text" pattern="^[a-zA-Z-äöüÄÖÜéàèÉÈ]+$" required>
 
             <br/>
 
             <label for="verein">Verein</label>
-            <input name="verein" type="text">
+            <input name="verein" type="text" pattern="^[a-zA-Z-äöüÄÖÜéàèÉÈ]+$" required>
 
             <br/>
 
             <label for="hcoach">Headcoach</label>
-            <input name="hcoach" type="text">
+            <input name="hcoach" type="text" pattern="^[a-zA-Z-äöüÄÖÜéàèÉÈ]+$" required>
 
             <br/>
 
             <label for="acoach">Assistant Coach</label>
-            <input name="acoach" type="text">
+            <input name="acoach" type="text" pattern="^[a-zA-Z-äöüÄÖÜéàèÉÈ]+$" required>
 
             <br/>
 
@@ -61,23 +59,24 @@
             <br/>
 
             <label for="number">Rueckennummer</label>
-            <input name="number" type="number">
+            <input name="number" type="number" size="2" min="4" max="15" required>
 
             <br/>
 
             <label for="jahr">Geburtsjahr</label>
-            <input name="jahr" type="number">
+            <input name="jahr" type="number" min="0" max="2015" required>
 
 
             <br/>
         </div>
 
         <div id="fave">
-            Als favorit markieren <br />
+            Als favorit markieren <br/>
             <input type="checkbox" name="favorit" value="favorit">
         </div>
 
-        <input id="submitButton" type="submit">
+        <!--<input id="submitButton" type="submit">-->
+        <button id="submitButton">Absenden</button>
     </form>
 
     <button id="backButton" onclick="location.href='home.html'">Zurueck</button>

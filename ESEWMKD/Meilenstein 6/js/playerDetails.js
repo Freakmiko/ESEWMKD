@@ -1,8 +1,9 @@
 var request = new XMLHttpRequest();
 var playerDataArray;
+var lastNumberOfPlayers=0;
 
 function loadPlayers() {
-    request.open("GET", "../js/data.json");
+    request.open("GET", "/AllPlayers");
     request.onreadystatechange = requestHandler;
     request.send();
 
@@ -10,10 +11,16 @@ function loadPlayers() {
     var reiterLinks = document.getElementsByClassName("tabellenReiterLinks")[0];
 
     reiterRechts.addEventListener("click", function() {
+        request.open("GET", "/Favorites");
+        request.onreadystatechange = requestHandler;
+        request.send();
         switchTabs(reiterLinks, reiterRechts);
     });
 
     reiterLinks.addEventListener("click", function() {
+        request.open("GET", "/AllPlayers");
+        request.onreadystatechange = requestHandler;
+        request.send();
         switchTabs(reiterRechts, reiterLinks);
     });
 }
@@ -28,14 +35,18 @@ function requestHandler() {
     }
 }
 
-function loadTable() {
-    for(var i = 0; i < playerDataArray.length; ++i) {
-        var tableRow = document.getElementById("spielerTabelle").insertRow(i+1);
+function clearTable() {
+    for (var k = 0; k < lastNumberOfPlayers; ++k)
+        document.getElementById("spielerTabelle").deleteRow(1);
 
-        // fuege dem style des tablerows das display hinzu damit
-        // es bei dem reiter wechsel verfuegbar ist
-        tableRow.style.display = "table-row";
-        playerDataArray[i].pRow = tableRow;
+    lastNumberOfPlayers = 0;
+}
+
+function loadTable() {
+    clearTable();
+
+    for(var i = 0; i < playerDataArray.length; ++i) {
+        var tableRow = document.getElementById("spielerTabelle").insertRow(i + 1);
 
         tableRow.insertCell(0).innerHTML = playerDataArray[i].firstname + " " + playerDataArray[i].surname;
         tableRow.insertCell(1).innerHTML = playerDataArray[i].team;
@@ -46,18 +57,7 @@ function loadTable() {
         tableRow.insertCell(6).innerHTML = playerDataArray[i].number;
         tableRow.insertCell(7).innerHTML = playerDataArray[i].year;
 
-    }
-}
-
-
-
-function switchVisibility() {
-    for(var i = 0; i < playerDataArray.length; ++i) {
-        if(!playerDataArray[i].isFavorite)
-            if(playerDataArray[i].pRow.style.display == "table-row")
-                playerDataArray[i].pRow.style.display = "none";
-            else
-                playerDataArray[i].pRow.style.display = "table-row";
+        lastNumberOfPlayers++;
     }
 }
 
@@ -65,8 +65,6 @@ function switchTabs(reiter1, reiter2) {
     if (reiter1.classList.contains("selected")) {
         reiter2.classList.add("selected");
         reiter1.classList.remove("selected");
-
-        switchVisibility();
     }
 }
 
