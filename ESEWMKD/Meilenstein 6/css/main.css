@@ -138,3 +138,8 @@ td {
     float: left;
     margin: 10px;
 }
+
+#tableScroller {
+    overflow: auto;
+    width: 100%;
+}
